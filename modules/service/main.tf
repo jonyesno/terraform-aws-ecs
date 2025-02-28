@@ -748,6 +748,12 @@ resource "aws_ecs_task_definition" "this" {
 
   lifecycle {
     create_before_destroy = true
+
+    # CI/CD continually updates the image property
+    ignore_changes = [
+      container_definitions
+    ]
+
   }
 }
 
